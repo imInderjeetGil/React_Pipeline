@@ -31,7 +31,7 @@ pipeline {
         stage('Post Deployment Testing') {
             steps {
                 script {
-                    sh 'curl -I http://localhost:1155'
+                    sh 'curl -I http://localhost:1156'
                 }
             }
         }
