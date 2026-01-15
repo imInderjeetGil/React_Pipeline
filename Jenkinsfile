@@ -10,10 +10,10 @@ pipeline {
         stage('Build and Push Images') {
             steps {
                 script {
-                    sh 'docker build -t amangil/react-app1 .'
+                    sh 'docker build -t amangil/react-app1_1 .'
                     withCredentials([usernamePassword(credentialsId: 'docker-hub', passwordVariable: 'ay_pass', usernameVariable: 'ay_user')]) {
                         sh 'docker login -u $ay_user -p $ay_pass'
-                        sh 'docker push amangil/react-app1 '
+                        sh 'docker push amangil/react-app1_1 '
                     }
                 }
             }
@@ -22,8 +22,8 @@ pipeline {
         stage('Deploy Services') {
             steps {
                 script {
-                    sh 'docker rm -f  react-app1'
-                    sh 'docker run -d --name my-react-app2 -p 1156:80 amangil/react-app1'
+                    sh 'docker rm -f  react-app1_1'
+                    sh 'docker run -d --name my-react-app2_1 -p 1156:80 amangil/react-app1_1'
                 }
             }
         }
